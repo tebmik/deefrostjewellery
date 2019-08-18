@@ -20,13 +20,14 @@ html, body {
   font-family: 'Raleway', sans-serif;
   color:#555;
   background-image:linear-gradient(#fff, rgba(0,0,0,0.05));
+  margin:0 auto;
 }
 
 .site-wrapper {
   max-width:1400px;
   margin:0 auto;
   //position:relative;
-  
+  //display:grid;
 }
 
 
@@ -37,12 +38,14 @@ html, body {
   position:fixed;
   z-index:5;
   display:grid;
+  
 }
 
 .side-nav-contents {
   display:grid;
   height:50%;
   align-self:center;
+  justify-self:center;
 }
 
 #home-aside {
@@ -111,11 +114,11 @@ html, body {
 }
 
 .nav {
-  max-width:1400px;
+  max-width:1200px;
   margin:0 auto;
   background-color:#fff;
   display:grid;
-  grid-template-columns:120px auto;
+  grid-template-columns:100px auto;
   height:100%;
   padding:0 20px;
 }
@@ -155,10 +158,26 @@ html, body {
 }
 
 .menu-content .item {
-  display:inline;
+  display:inline-block;
   padding:10px 15px;
-  opacity:.5;
+  opacity:.7;
   transition:all .2s ease-in-out;
+  position:relative;
+}
+
+.menu-content .item::after {
+  content:'';
+  display:block;
+  width:0;
+  height:2px;
+  background-color:#333;
+  transition:width .3s linear;
+  margin-top:3px;
+}
+
+.menu-content .item:hover::after {
+  width:100%;
+  transition:width .3s;
 }
 
 .menu-content .item:hover {
@@ -170,20 +189,12 @@ html, body {
   color:#333;
 }
 
-.sub-menu {
-  position:absolute;
-  left:50%;
-  transform:translate(-15%);
-  min-width:130px;
-  overflow:hidden;
-  height:0;
-  transition:all .2s linear;
-  transform-origin:top;
-  background-color:rgba(234,234,234,0.7);
-  margin-top:10px;
-  border-top-right-radius:10px;
-  border-bottom-right-radius:10px;
-  border-bottom-left-radius:10px;
+.menu-content .active::after {
+  content:'';
+  width:100%;
+  height:2px;
+  background-color:#333;
+  margin-top:3px;
 }
 
 .nav-contact {
@@ -195,7 +206,6 @@ html, body {
     position:absolute;
     height:100%;
     width:32px;
-    //background-color:green;
     right:20px;
     display:grid;
     display:none;
@@ -207,7 +217,6 @@ html, body {
     height:32px;
     width:32px;
     align-self:center;
-    //background-color:yellow;
     cursor:pointer;
   }
   
@@ -240,7 +249,11 @@ html, body {
   }
 
 
+/************************
 
+ TITLE WRAPPER
+
+****************************/
 
 .title-wrapper-1 {
   min-height:100vh;
@@ -252,21 +265,22 @@ html, body {
   max-width:1400px;
   text-align:center;
   margin:0 auto;
-  //padding:150px 0px 0 0px;
-  
+  transform:translateY(100px);
+  opacity:0;
+  transition:all .5s ease-in-out;
+  transform-origin:bottom;
   display:grid;
 }
 
 
 .title-content {
-  //padding:17px 17px 0 17px;
   position:relative;
   align-self:center;
 }
 
 .underline {
-  max-width:70%;
-  height:1px;
+  max-width:75%;
+  height:2px;
   background-color:rgba(0,0,0,.5);
   margin:20px auto;
   
@@ -280,12 +294,15 @@ html, body {
   letter-spacing:0.5em;
   padding-left:0.5em;
   line-height:32px;
+  color:#333;
 }
 
 .title-wrapper p {
    font-family: 'Raleway', sans-serif;
-   font-size:12px;
+   font-size:14px;
    padding:0 20px;
+   color:#555;
+   letter-spacing:0.2em;
 }
 
 
@@ -346,10 +363,15 @@ html, body {
 }
 
 
+/**************************
 
+  MAIN WRAPPER
+
+
+********************************/
 
 .main-wrapper {
-  max-width:1400px;
+  max-width:1200px;
   margin:0 auto;
 }
 
@@ -363,7 +385,7 @@ html, body {
 }
 
 #category-wrapper {
-  max-width:1400px;
+  max-width:1200px;
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
   grid-gap:20px;
@@ -376,10 +398,12 @@ html, body {
   position:relative;
   transition:all .5s ease-in-out;
   background-color:rgba(0,0,0,0.8);
+  
 }
 
-.product-cat:hover img {
-  transform:scale(1.05);
+.product-cat a:hover img {
+  transform:scale(1.1);
+  transform-origin:center;
   opacity:.7;
 }
 
@@ -393,11 +417,12 @@ html, body {
   top:50%;
   transform:translate(-50%);
   font-family: 'raleway', sans-serif;
-  font-weight:400;
+  font-weight:700;
   z-index:2;
+  letter-spacing:0.2em;
 }
 
-#category-wrapper img {
+.product-cat img {
   max-width:100%;
   object-fit:none;
   transition:all .5s ease-in-out;
@@ -464,7 +489,7 @@ html, body {
 
 .benefits-wrapper {
   position:relative;
-  max-width:1400px;
+  max-width:1200px;
   padding:20px;
   margin:0 auto 60px auto;
 }
@@ -500,18 +525,71 @@ html, body {
 
 #main-product-wrapper {
   min-height:100vh;
+  display:grid;
+  position:relative;
 }
 
 .product-spec-wrapper {
-  max-width:1400px;
+  max-width:1200px;
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
   grid-gap:20px;
   padding:20px;
   position:relative;
-  min-height:100vh;
   align-self:center;
 }
+
+.product-title-wrapper {
+  position:relative;
+  display:grid;
+  grid-template-rows:40% auto;
+  grid-template-columns:1fr;
+}
+
+.product-title::after {
+  content:'';
+  width:100%;
+  height:2px;
+  background-color:#333;
+  display:block;
+  margin-top:20px;
+}
+
+.product-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+  letter-spacing: 0.5em;
+  padding-left: 0;
+  line-height: 32px;
+  color: #333;
+  text-transform:uppercase;
+  padding:0n 20px 20px 20px;
+  //grid-row:1/2;
+}
+
+.product-title::before {
+  content:'';
+  width:100%;
+  height:2px;
+  background-color:#333;
+  display:block;
+  margin-bottom:20px;
+}
+
+
+
+.product-title-p {
+  font-family: 'Raleway', sans-serif;
+   font-size:18px;
+   padding:0;
+   line-height:25.8px;
+   align-self:start;
+   display:grid;
+}
+
+
 
 .img-content-wrapper {
   overflow:hidden;
@@ -530,8 +608,9 @@ html, body {
   text-transform:capitalize;
   color:#fff;
   font-family: 'raleway', sans-serif;
-  font-weight:400;
+  font-weight:900;
   z-index:2;
+  letter-spacing:0.2em;
 }
 
 .img-content-wrapper img {
@@ -545,22 +624,23 @@ html, body {
 .ecoSilver-wrapper img {
   object-fit:cover;
   transform:scale(1.05);
+  transform:translateZ(0) scale(1.1, 1.1);
 }
 
 .copper-wrapper img {
   object-fit:cover;
-  transform:translateZ(0) scale(1.0, 1.0);
+  transform:translateZ(0) scale(1.1, 1.1);
 }
 
 
 .ecoSilver-wrapper:hover img {
-  opacity:.7;
-  transform:scale(1.07);
+  opacity:.55;
+  transform:scale(1.04);
 
 }
 
 .copper-wrapper:hover img {
-  opacity:.7;
+  opacity:.55;
   transform:scale(1.02);
 
 }
@@ -571,9 +651,11 @@ html, body {
 
 
 #insta-wrapper {
-  max-width:1400px;
+  max-width:1200px;
   margin:0 auto;
   padding:20px;
+  min-height:100%;
+  display:grid;
 }
 
 
@@ -581,6 +663,31 @@ html, body {
   display:grid;
   text-align:center;
   min-width:280px;
+  max-height:50%;
+  //align-self:center;
+}
+
+.stockist-title {
+  color:#fff;
+  font-weight:900;
+}
+
+.stockist-title::after {
+  content:'';
+  width:100%;
+  height:2px;
+  background-color:#fff;
+  display:block;
+  margin-top:20px;
+}
+
+.stockist-title::before {
+  content:'';
+  width:100%;
+  height:2px;
+  background-color:#fff;
+  display:block;
+  margin-bottom:20px;
 }
 
 /*****************************
@@ -589,12 +696,38 @@ html, body {
 
 *********************************/
 
+.error {
+  background-color:#d9534f;
+  opacity:0;
+  color:#fff;
+  font-weight:bold;
+  padding:5px;
+  position:absolute;
+  width:100%;
+  z-index:10;
+  transition:all .4s ease-in-out;
+}
+
+.success {
+  background-color:#5cb85c;
+  opacity:0;
+  color:#fff;
+  font-weight:bold;
+  padding:5px;
+  position:absolute;
+  width:100%;
+  z-index:15;
+  transition:all .4s ease-in-out;
+}
+
 .stockist-form {
   position:fixed;
   height:100vh;
   width:100%;
   top:0;
-  left:0;
+  left:100vw;
+  transition:all .3s ease-in-out;
+  transform-origin:right;
   //background-image:linear-gradient(#473183, #408FA2);
   background-image:url('model_shoot/bracelets/bracelet_img_11.jpg');
   background-repeat:no-repeat;
@@ -602,7 +735,7 @@ html, body {
   background-size:cover;
   z-index:100;
   display:grid;
-  display:none;
+  //display:none;
 }
 
 .form-content {
@@ -699,16 +832,20 @@ html, body {
 .stockist-grid-wrapper {
   display:grid;
   grid-template-areas:
-    'stockist-content'
-    'stockist-img';
-  min-height:100vh;
+    'stockist-content';
+  min-height:61.8vh;
   position:relative;
-  padding:10px 0;
+  padding:0;
+  background-image:url('model_shoot/rings/ring_6.jpg');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  background-attachment:fixed;
 }
 
 .stockist-content {
   //margin:20px auto;
-  max-width:1400px;
+  max-width:1200px;
   justify-self:center;
   align-self:center;
   grid-area:stockist-content;
@@ -721,7 +858,7 @@ html, body {
   margin:16px auto;
   text-transform:uppercase;
   font-family: 'Quicksand', sans-serif;
-  font-weight:400;
+  font-weight:900;
   letter-spacing:.3em;
   
 }
@@ -789,7 +926,7 @@ html, body {
 }
 
 .footer-content {
-  max-width:1400px;
+  max-width:1200px;
   //margin:0 auto;
   padding:20px;
   display:grid;
@@ -805,7 +942,7 @@ html, body {
 }
 
 .signup-wrapper {
-  max-width:1400px;
+  max-width:1200px;
   margin:16px auto;
   text-align:center;
   padding:20px;
@@ -949,6 +1086,7 @@ html, body {
 }
 
 
+
 /************************
 
   GALLERY PAGE!
@@ -956,207 +1094,231 @@ html, body {
 
 ****************************/
 
-.gallery-grid-container {
-  display:grid;
-  height:95%;
+.gallery-content {
+  margin:0 auto;
   position:relative;
-  grid-template-columns:repeat(50, 1fr);
-  grid-template-rows:repeat(31, 1fr);
-  grid-gap:5.4px;
-  overflow:hidden;
-  align-self:center;
 }
-
-.gallery-title-grid {
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%, -50%);
-  z-index:4;
-  color:#fff;
-}
-
-.gallery-img {
-  background-color:#c0c0c0;
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:cover;
-}
-
 
 #earrings-wrapper {
-  min-height:100vh;
-  max-width:1400px;
-  display:grid;
+  max-height:100%;
+  max-width:1200px;
   position:relative;
   margin:0 auto;
+  padding:20px;
+  margin-bottom:80px;
+  text-align:center;
 }
 
-.earrings-img-1 {
-  background-image:url('model_shoot/earrings/earring_img_1.jpg');
-  background-attachment:fixed;
-  background-position:-400px 80%;
-  min-width:100%;
+.title-earrings,
+.title-bracelet,
+.title-rings,
+.title-necklace {
+  position:sticky;
+  top:0;
+  padding:20px 0;
+  background-image:linear-gradient(#fff, rgba(225,225,225,0.7));
+  width:100%;
 }
-.earrings-img-2 {
-  background-image:url('eco_silver_img/img_5a.jpg');
-}
-.earrings-img-3 {
-  background-image:url('copper_img/img_2a.jpg');
-}
-.earrings-img-4 {
-  background-image:url('copper_img/img_6a.jpg');
-}
-.earrings-img-5 {
-  background-image:url('eco_silver_img/img_1a.jpg');
-}
-.earrings-img-6 {
-  background-image:url('eco_silver_img/img_3a.jpg');
-}
-.earrings-img-7 {
-  background-image:url('eco_silver_img/img_3a.jpg');
-}
-
-
-
 
 #bracelets-wrapper {
-  min-height:100vh;
-  max-width:1400px;
-  display:grid;
+  max-height:100%;
+  max-width:1200px;
   position:relative;
   margin:0 auto;
+  padding:20px;
+  margin-bottom:80px;
+  text-align:center;
 }
-
-.bracelet-img-1 {
-  background-image:url('model_shoot/bracelets/bracelet_img_1.jpg');
-  background-attachment:fixed;
-  min-width:100%;
-  background-position:-400px 100%;
-}
-.bracelet-img-2 {
-  background-image:url('model_shoot/bracelets/bracelet_img_2.jpg');
-}
-.bracelet-img-3 {
-  background-image:url('model_shoot/bracelets/bracelet_img_3.jpg');
-}
-.bracelet-img-4 {
-  background-image:url('model_shoot/bracelets/bracelet_img_4.jpg');
-}
-.bracelet-img-5 {
-  background-image:url('model_shoot/bracelets/bracelet_img_5.jpg');
-}
-.bracelet-img-6 {
-  background-image:url('model_shoot/bracelets/bracelet_img_6.jpg');
-}.bracelet-img-7 {
-  background-image:url('model_shoot/bracelets/bracelet_img_7.jpg');
-}
-
 
 
 
 #rings-wrapper {
-  min-height:100vh;
-  max-width:1400px;
-  display:grid;
+  max-height:100%;
+  max-width:1200px;
   position:relative;
   margin:0 auto;
-}
-
-.rings-img-1 {
-  background-image:url('model_shoot/rings/ring_1.jpg');
-  background-attachment:fixed;
-  min-width:100%;
-  background-position:-300px 100%;
-}
-.rings-img-2 {
-  background-image:url('model_shoot/rings/ring_6.jpg');
-}
-.rings-img-3 {
-  background-image:url('model_shoot/rings/ring_5.jpg');
-}
-.rings-img-4 {
-  background-image:url('model_shoot/rings/ring_4.jpg');
-}
-.rings-img-5 {
-  background-image:url('model_shoot/rings/ring_3.jpg');
-}
-.rings-img-6 {
-  background-image:url('model_shoot/rings/ring_2.jpg');
-}
-.rings-img-7 {
-  background-image:url('model_shoot/rings/ring_7.jpg');
+  padding:20px;
+  margin-bottom:80px;
+  text-align:center;
 }
 
 
 
 #necklace-wrapper {
-  min-height:100vh;
-  max-width:1400px;
-  display:grid;
+  max-height:100%;
+  max-width:1200px;
   position:relative;
   margin:0 auto;
-}
-.necklace-img-1 {
-  background-image:url('model_shoot/necklace/necklace_5.jpg');
-  background-attachment:fixed;
-     min-width:100%;
-  background-position:-50px 100%;
-}
-.necklace-img-2 {
-  background-image:url('model_shoot/necklace/necklace_8.jpg');
-}
-.necklace-img-3 {
-  background-image:url('model_shoot/necklace/necklace_3.jpg');
-}
-.necklace-img-4 {
-  background-image:url('model_shoot/necklace/necklace_4.jpg');
-}
-.necklace-img-5 {
-  background-image:url('model_shoot/necklace/necklace_7.jpg');
-}
-.necklace-img-6 {
-  background-image:url('model_shoot/necklace/necklace_2.jpg');
-}
-.necklace-img-7 {
-  background-image:url('model_shoot/necklace/necklace_1.jpg');
+  padding:20px;
+  margin-bottom:80px;
+  text-align:center;
 }
 
 
-.gallery-img-1 {
-  grid-column:1 / span 31;
-  grid-row:1 / span 31;
+
+.gallery-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  line-height: 32px;
+  text-transform:uppercase;
+  margin:40px auto;
+ 
 }
 
-.gallery-img-2 {
-  grid-column:span 19;
-  grid-row:span 19;
+
+
+
+
+
+.gallery-earrings {
+  justify-self:center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr 1fr);
+  grid-auto-rows: 100px;
+  grid-auto-flow:dense;
+  grid-gap:10px;
 }
 
-.gallery-img-3 {
-  grid-column:39 / span 12;
-  grid-row:span 12;
+.gallery-bracelet {
+  justify-self:center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr 1fr);
+  grid-auto-rows: 100px;
+  grid-auto-flow:dense;
+  grid-gap:10px;
 }
 
-.gallery-img-4 {
-  grid-column:32 / span 7;
-  grid-row:25 / span 7;
+.gallery-rings {
+  justify-self:center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr 1fr);
+  grid-auto-rows: 100px;
+  grid-auto-flow:dense;
+  grid-gap:10px;
 }
 
-.gallery-img-5 {
-  grid-column:32 / span 5;
-  grid-row:20 /span 5;
+.gallery-necklace {
+  justify-self:center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr 1fr);
+  grid-auto-rows: 100px;
+  grid-auto-flow:dense;
+  grid-gap:10px;
 }
 
-.gallery-img-6 {
-  grid-column:37 / span 2;
-  grid-row:20 /span 5;
+
+.close {
+  background-color:transparent;
+  color:#fff;
+  border:0;
+  outline:none;
+  text-transform:uppercase;
+  cursor:pointer;
+  font-size:28px;
+  padding:1em;
 }
 
-.gallery-img-7 {
-  grid-column:37 / span 2;
-  grid-row:20 /span 5;
+
+
+.item {
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1;
+  grid-template-rows:1;
+  object-position:50%, 50%;
 }
+
+.item img {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  cursor:pointer;
+  
+}
+
+.item__overlay {
+  background-color:#80008032;
+  grid-column:1 / -1;
+  grid-row: 1 / -1;
+  height:100%;
+  position:relative;
+  display:grid;
+  justify-items:center;
+  align-items:center;
+  transform:translateY(100%);
+  transition:all .2s ease-in-out;
+  transform-origin:bottom;
+  cursor:pointer;
+}
+
+.item__overlay button {
+  background:none;
+  border:2px solid #fff;
+  text-transform:uppercase;
+  background-color:rgba(0,0,0,0.4);
+  color:#fff;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+.item:hover .item__overlay {
+  transform:translateY(0);
+}
+
+.item.v2 {
+  grid-row:span 2;
+}
+.item.v3 {
+  grid-row:span 3;
+}
+.item.v4 {
+  grid-row:span 4;
+}
+.item.h2 {
+  grid-column:span 2;
+}
+.item.h3 {
+  grid-column:span 3;
+}
+.item.h4 {
+  grid-column:span 4;
+}
+
+.gallery-overlay {
+  position:fixed;
+  background-color:rgba(0,0,0,1);
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  display:none;
+  z-index:10;
+}
+
+.gallery-overlay.open {
+  display:grid;
+}
+
+.overlay-inner {
+  display:grid;
+  justify-self:center;
+  background-color:transparent;
+  max-width:700px;
+  padding:0;
+}
+
+.gallery-overlay img {
+  width:100%;
+}
+
+
+
 
 
 /***************************
@@ -1166,18 +1328,20 @@ html, body {
 ******************************/
 
 #about-wrapper {
-  max-width:1400px;
-  min-height:100vh;
-  text-align:center;
-  margin:69.52px auto;
+  max-width:1200px;
+  min-height:600px;
+  text-align:left;
+  margin:0 auto;
   display:grid;
-  align-self:center;
+  align-self:top;
 }
 
 .about-content {
   position:relative;
   max-width:1200px;
   margin:auto;
+  display:grid;
+  
 }
 
 .about-content p {
@@ -1185,6 +1349,8 @@ html, body {
    font-size:16px;
    padding:0 20px;
    line-height:25.8px;
+   align-self:start;
+   display:grid;
 }
 
 
@@ -1198,13 +1364,13 @@ html, body {
 
 
 #product-wrapper {
-  //padding:0 20px;
+  
 }
 
 .product-content {
-  max-width:1400px;
+  max-width:1200px;
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
   grid-column-gap:20px;
   grid-row-gap:40px;
   padding:20px;
@@ -1269,18 +1435,87 @@ html, body {
 
 
 
+/***************************
+
+  after form submitted
 
 
+*******************************/
+
+.something h1{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+
+
+
+
+/****************************
+
+  SMALLER LAPTOP MEDIA QUERIES
+
+
+********************************/
+
+@media (max-width:1024px) {
+  
+  /*HOME PAGE*/
+  
+  #category-wrapper {
+    //max-width:600px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    margin:0 auto;
+  }
+  
+  .product-cat {
+    max-height:200px;
+    justify-self:center;
+  }
+  
+  .earings img {
+    object-position:50% -360px;
+  }
+  
+  .necklace img {
+    object-position:0% -600px;
+  }
+  
+  .bracelet img {
+    object-position:0% -400px;
+  }
+  
+  .rings img {
+    object-position:0% 90%;
+  }
+  
+  .product-title-p {
+    margin-top:40px;
+  }
+  
+  
+  
+  
+  /*ABOUT PAGE*/
+  
+  .about-content p {
+    padding:0 80px;
+  }
+  
+}
 
 
 
 
 /*****************************
 
-  NAV MENU COLLAPSE TO TOGGLE BTN
+  NAV MENU COLLAPSE TO TOGGLE BTN WIDTH
 
 *****************************/
-@media ( max-width:655px) {
+@media (max-width:655px) {
   
   
   #header {
@@ -1303,14 +1538,15 @@ html, body {
     display:grid;
     transition:all .2s linear;
     transform-origin:left;
-    box-shadow: inset -7px 0 9px -7px rgba(0,0,0,0.4);
+    box-shadow: inset -10px 0 9px -5px rgba(0,0,0,0.5);
   }
   
   .menu-logo-collapsed {
     display:block;
     text-align:left;
-    padding:20px 0;
-    font-weight:700;
+    padding:15px 0 20px 0;
+    font-weight:bold;
+    font-size:20px;
   }
   
   .menu-content {
@@ -1332,7 +1568,23 @@ html, body {
     padding:20px 20px 20px 0;
     width:80%;
     cursor:pointer;
-    border-bottom:1px solid rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(0,0,0,0.5);
+  }
+  
+  .menu-content .item:hover::after {
+    width:0;
+  }
+  
+  .menu-content .active::after {
+    content:'';
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    display:inline-block;
+    background-color:#333;
+    opacity:.7;
+    float:right;
+    margin-top:7px;
   }
   
   .contact {
@@ -1355,11 +1607,150 @@ html, body {
     display:grid;
     z-index:500;
   }
+  
+  .gallery-earrings,
+  .gallery-bracelet,
+  .gallery-rings,
+  .gallery-necklace {
+    
+    grid-template-columns: repeat(auto-fit,1fr);
+    grid-gap:5px;
+  }
+  .product-title-p {
+    margin-top:0;
+  }
+  
+  
+
 
 }
 
 
 
+
+/*************************
+
+  TABLET MEDIA QUERIES
+
+
+**********************************/
+
+@media (max-width:768px) {
+  
+  /*HOME PAGE*/
+  
+  
+  .side-nav {
+    display:none;
+  }
+  
+  .underline {
+    max-width:450px;
+    width:400px;
+  }
+  
+  #category-wrapper {
+    max-width:600px;
+    display:grid;
+    grid-template-columns:1fr;
+    margin:0 auto;
+  }
+  
+  .product-cat {
+    max-height:200px;
+    justify-self:center;
+  }
+  
+  .earings img {
+    object-position:50% -360px;
+  }
+  
+  .necklace img {
+    object-position:0% -600px;
+  }
+  
+  .bracelet img {
+    object-position:0% -400px;
+  }
+  
+  .rings img {
+    object-position:0% 90%;
+  }
+  
+  
+  .benefits-wrapper {
+    max-width:600px;
+  }
+  
+  .benefits-content {
+    grid-template-columns:1fr 1fr;
+    padding:0;
+  }
+  
+  .benefits-1 {
+    grid-column:1/2;
+  }
+  
+  .benefits-2 {
+    grid-column:2/3;
+  }
+  
+  .benefits-3 {
+    grid-column:1/3;
+  }
+  
+  #main-product-wrapper {
+    max-width:600px;
+    margin:0 auto;
+  }
+  
+  .product-spec-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  
+  
+  .product-title-wrapper {
+    grid-template-rows:auto;
+    grid-template-columns:1fr 1fr 1fr;
+    text-align:center;
+  }
+  
+  .product-title {
+    justify-self:center;
+    grid-column:1/4;
+  }
+  
+  .product-title-p {
+    grid-column:1/4;
+    grid-row:2/3;
+  }
+  
+  .img-content-wrapper {
+    max-height:400px;
+  }
+  
+  #insta-wrapper {
+    padding:20px 0;
+  }
+  
+  .stockist-content {
+    max-width:600px;
+  }
+  
+  
+  /*PRODUCT PAGE*/
+  
+  .product-content {
+    
+    grid-template-columns:1fr 1fr;
+    grid-column-gap:20px;
+    grid-row-gap:40px;
+    padding:20px;
+    position:relative;
+  }
+    
+}
 
 
 
@@ -1371,6 +1762,10 @@ html, body {
 *************************/
 
 @media (max-width:425px){
+  
+  .underline {
+    max-width:280px;
+  }
   
   .logo {
     justify-self:left;
@@ -1399,7 +1794,213 @@ html, body {
     margin:10px auto;
   }
   
+  .overlay-inner {
+    
+    min-width:300px;
+    
+  }
+  
+  #category-wrapper {
+    padding:20px 0;
+  }
+  
+  .product-spec-wrapper {
+    padding:20px 0;
+  }
+  
+  .copper-wrapper img {
+    transform:scale(1.04);
+  }
+  
+  #earrings-wrapper {
+    padding:20px 0;
+  }
+  
+  #bracelets-wrapper {
+    padding:20px 0;
+  }
+  
+  
+  #rings-wrapper {
+    padding:20px 0;
+  }
+  
+  
+  #necklace-wrapper {
+    padding:20px 0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .benefits-1 {
+    grid-column:1/3;
+  }
+  
+  .benefits-2 {
+    grid-column:1/3;
+  }
+  
+  .benefits-3 {
+    grid-column:1/3;
+  }
+  
+  .img-content-wrapper {
+    min-height:400px;
+  }
+  
+  .product-title::after {
+    content:'';
+    width:80%;
+    margin:20px auto;
+  }
+  
+  .product-title::before {
+    content:'';
+    width:80%;
+    margin:20px auto;
+  }
+  
+  .product-title-p {
+    padding:0 20px;
+  }
+  
+  /*PRODUCT PAGE*/
+  
+  .product-content {
+    
+    grid-template-columns:1fr;
+    grid-column-gap:20px;
+    grid-row-gap:40px;
+    position:relative;
+    padding: 20px 0;
+  }
+  
+  .prod-description {
+    padding:0 20px;
+  }
+  .product-btn {
+    justify-self:center;
+  }
+  
+  /*ABOUT PAGE*/
+  
+  .about-content p {
+    text-align:center;
+    padding:0 20px;
+  }
+  
 }
+
+
+/****************************
+
+  MEDIA QUERIES HEIGHT
+
+*********************************/
+
+@media (max-height:425px) {
+
+
+  .logo {
+    justify-self:start;
+  }
+  
+  .side-nav {
+    margin-top:40px;
+  }
+  
+  .side-nav-contents{
+    padding-left:20px;
+    justify-self:start;
+  }
+  
+  .title-content {
+    margin-top:85px;
+  }
+  
+  //.stockist-form {
+    
+    display:block;
+  }
+  
+  .form-content {
+    grid-template-columns:1fr 1fr 1fr;
+    grid-row-gap:10px;
+  }
+  
+  .form-toggle-wrapper {
+    grid-column:3/4;
+  }
+  
+  .form-content h1 {
+    grid-column:1/3;
+    grid-row:1/1;
+    padding:0;
+    justify-self:start;
+    align-self:center;
+    font-size:1.2em;
+  }
+  
+  .form-content p {
+    grid-column:1/4;
+    justify-self:start;
+    text-align:left;
+    padding:0 0 10px 0;
+  }
+  
+  .form-content label {
+    grid-column:1/1;
+    align-self:center;
+    margin-top:0;
+  }
+  
+  .form-content input {
+    height:28px;
+    padding:0 10px;
+    grid-column:2/4;
+  }
+  
+  .form-content textarea {
+    height:68px;
+    margin-bottom:0;
+    padding:10px 10px;
+    grid-column:2/4;
+  }
+  
+  .form-cta {
+    padding:0;
+    margin-top:0;
+    grid-column:2/4;
+    padding:10px 0;
+  }
+  
+  
+  .menu-logo-collapsed {
+  }
+  
+  .menu-content .item {
+    padding-bottom:8px;
+    padding-top:8px;
+  }
+  
+  
+  .overlay-inner {
+    display:grid;
+    justify-self:center;
+    background-color:transparent;
+    width:320px;
+    padding:20px;
+  }
+  
+  
+
+}
+
 
 
 
@@ -1412,7 +2013,10 @@ html, body {
 
 *****************************/
 
-
+.title-wrapper-onload {
+  opacity:1;
+  transform:translateY(0px);
+}
 
 .menu-toggle {
   right:20%;
@@ -1471,8 +2075,13 @@ html, body {
 
 
 .stockist-form-open {
-  display:block;
+  /*display:block;*/
   display:grid;
+  left:0;
+}
+
+.stockist-form-close {
+  left:-100vw;
 }
 
 
@@ -1483,3 +2092,16 @@ html, body {
 
 
 
+/**********************
+
+  PRINT MEDIA QUERY
+
+*******************************/
+@media print {
+  * {
+    background-color:transparent;
+    color:#000 !important;
+    box-shadow:none !important;
+  }
+  
+}
